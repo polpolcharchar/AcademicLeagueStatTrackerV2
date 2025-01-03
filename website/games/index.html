@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic League Game Viewer</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+
+    <div class="tabDiv">
+        <button class="tabButton" onclick="window.location.href = '/'">Tracker</button>
+        <!-- <button class="tabButton" onclick="window.location.href = '/players'">Players</button> -->
+        <button class="tabButton" onclick="window.location.href = '/games'" disabled="true">Analysis</button>
+        <!-- <button class="tabButton" onclick="window.location.href = '/questions'">Questions</button> -->
+    </div>
+
+    <div class="container">
+        <h2>Academic League Game Viewer</h2>
+        <div id="gamesButtonDiv" class="horizontalButtonContainer" style="display: none;"></div>
+        <div id="importButtonDiv" class="horizontalButtonContainer"></div>
+    </div>
+
+    <div id="infoDiv" class="container" style="display: none">
+        <h2 id="gameName"></h2>
+        <h3 id="gameInfo"></h3>
+        <p id="gameEvaluation"></p>
+    </div>
+
+    <div id="chartDiv" style="display: none">
+        <div class="chartContainer">
+            <h2>Question Distribution</h2>
+
+            <canvas id="questionDistributionChart" width="400" height="400"></canvas>
+
+            <div id="questionDistributionTypesDiv" class="horizontalButtonContainer">
+                <button onclick="onQuestionDistributionChartIndexChange(0)" class="selectedButton">All</button>
+                <button onclick="onQuestionDistributionChartIndexChange(1)">Correct</button>
+                <button onclick="onQuestionDistributionChartIndexChange(2)">Incorrect</button>
+            </div>
+        </div>
+
+        <div class="chartContainer">
+            <h2>Player Stats</h2>
+
+            <canvas id="playerStatsChart" width="400" height="400"></canvas>
+
+            <div id="playerStatsTypesDiv" class="horizontalButtonContainer">
+                <button onclick="onPlayerStatsChartIndexChange(0)">Correct Categories</button>
+                <button onclick="onPlayerStatsChartIndexChange(1)" class="selectedButton">Answer Types</button>
+                <button onclick="onPlayerStatsChartIndexChange(2)">Points Per Tossup</button>
+                <!-- <button onclick="onPlayerStatsChartIndexChange(2)">Incorrect Categories</button> -->
+            </div>
+
+            <div id="sortDiv" class="horizontalButtonContainer">
+                <button id="sortButton" onclick="togglePlayerStatsSorting()">Toggle Sorting</button>
+            </div>
+        </div>
+
+        <div class="chartContainer" id="timelineDiv">
+            <h2>Tossup Points Timeline</h2>
+
+            <canvas id="gameTimelineChart" width="400" height="400"></canvas>
+        </div>
+        
+    </div>
+
+    <div class="tableContainer" id="playerDiv" style="display: none">
+
+        <h2>Player Stats</h2>
+
+        <table id="playersTable" border="1" style="margin: 0 auto; display: none;" class="styled-table">
+            <thead>
+            </thead>
+
+            <tbody>
+            </tbody>
+        </table> 
+
+    </div>
+
+    <div id="questionsDiv" class="tableContainer" style="display: none;">
+        <h2>Question Browser</h2>
+    
+        <table id="questionsTable" border="1" class="styled-table">
+            <thead>
+                <tr>
+                    <th>Game</th>
+                    <th>Category</th>
+                    <th>Player 1</th>
+                    <th>Player 2</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    
+        <table id="questionQueryTable" border="1" class="styled-table">
+            <thead>
+                <tr>
+                    <th>Categories</th>
+                    <th>Response Types</th>
+                    <th>Answerers</th>
+                    <th>With All</th>
+                    <th>With Some</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    
+
+    <script type="module" src="gameStatsV2.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
