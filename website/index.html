@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic League Stat Tracker</title>
+    <link rel="stylesheet" href="/Website/style.css">
+</head>
+<body>
+
+    <div class="tabDiv">
+        <button class="tabButton" onclick="window.location.href = '/'" disabled="true">Tracker</button>
+        <!-- <button class="tabButton" onclick="window.location.href = '/players'">Players</button> -->
+        <button class="tabButton" onclick="window.location.href = '/Website/games'">Analysis</button>
+        <!-- <button class="tabButton" onclick="window.location.href = '/Website/players'">Players</button> -->
+        <!-- <button class="tabButton" onclick="window.location.href = '/questions'">Questions</button> -->
+    </div>
+
+    <div class="container">
+        <h1>Academic League Stat Tracker</h1>
+        <div id="setup">
+
+            <div id="playerNames" style="display: flex; gap: 20px;">
+
+                <div style="flex: 1;" id="team1">
+                    <h2 style="text-align: left;">Team 1:</h2>
+                    <select id="team1NameSelect" class="teamDropdown" disabled="true">
+                        <option value="other" selected>Other</option>
+
+                    </select>
+                
+                    <div id="nameInputs1"></div>
+                
+                    <div id="customTeamInputControls1">
+                        <button onclick="addPlayerNameInput('nameInputs1')" id="addPlayerNameInputButton1">Add Player</button>
+                        <button onclick="removePlayerNameInput('nameInputs1')" id="removePlayerNameInputButton1">Remove Player</button>
+                    </div>
+                </div>
+                
+                <div style="flex: 1;" id="team2">
+                    <h2 style="text-align: left;">Team 2:</h2>
+                    <select id="team2NameSelect" class="teamDropdown" disabled="true">
+                        <option value="other" selected>Other</option>
+
+                    </select>
+                
+                    <div id="nameInputs2"></div>
+                
+                    <div id="customTeamInputControls2">
+                        <button onclick="addPlayerNameInput('nameInputs2')" id="addPlayerNameInputButton2">Add Player</button>
+                        <button onclick="removePlayerNameInput('nameInputs2')" id="removePlayerNameInputButton2">Remove Player</button>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div id="timeDiv" style="display:flex">
+                <h2 id="currentTimeLabel" style="width: fit-content; padding-right: 10px;">Match Length:</h2>
+                <input type="number" id="currentTime" min="0" value="30" onclick="this.select()">
+
+            </div>
+
+            <button onclick="onTeamEditComplete()">Start Game</button>
+            <!-- <button onclick="prepareForOnline()" id="prepareForOnlineButton">Prepare Online Game</button> -->
+
+        </div>
+        <div id="game" style="display: none;">
+
+            <div id="categoryButtons" style="display: flex" class="horizontalButtonContainer"></div>
+
+            <div id="playerChoices" style="display: none">
+                <div id="playerButtons" class="horizontalButtonContainer"></div>
+
+                <div id="skipButtonDiv" class="horizontalButtonContainer">
+                    <button onclick="submitAnswer('SKIPPED')">Skip Question</button>
+                </div>
+            </div>
+
+            <div id="answerButtons" style="display: none" class="horizontalButtonContainer">
+                <button onclick="submitAnswer('CORRECT')">Correct</button>
+                <button onclick="submitAnswer('INCORRECT')">Incorrect</button>
+                <!-- <button onclick="submitAnswer('SKIPPED')">Skip</button> -->
+            </div>
+
+
+            <div id="actionButtons" class="horizontalButtonContainer">
+                <button onclick="onTeamEditBegin()">Substitute Players</button>
+                <button onclick="document.getElementById('saveDataDiv').style.display = 'block'; document.getElementById('saveButton').style.display = 'none'; document.getElementById('saveDataDiv').scrollIntoView({behavior: 'smooth'})" id="saveButton">Save Data</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="chartDiv" style="display: none">
+        <div class="chartContainer">
+            <h2>Question Distribution</h2>
+
+            <canvas id="questionDistributionChart" width="400" height="400"></canvas>
+
+            <div id="questionDistributionTypesDiv" class="horizontalButtonContainer">
+                <button onclick="onQuestionDistributionChartIndexChange(0)" class="selectedButton">All Questions</button>
+                <button onclick="onQuestionDistributionChartIndexChange(1)">Correct Questions</button>
+                <button onclick="onQuestionDistributionChartIndexChange(2)">Incorrect Questions</button>
+            </div>
+
+        </div>
+
+        <div class="chartContainer">
+            <h2>Player Stats</h2>
+            <canvas id="playerStatsChart" width="400" height="400"></canvas>
+
+            <div id="playerStatsTypesDiv" class="horizontalButtonContainer">
+                <button onclick="onPlayerStatsChartIndexChange(0)">Correct Categories</button>
+                <button onclick="onPlayerStatsChartIndexChange(1)" class="selectedButton">Answer Types</button>
+                <button onclick="onPlayerStatsChartIndexChange(2)">Points Per Tossup</button>
+            </div>
+
+            <div id="sortDiv" class="horizontalButtonContainer">
+                <button id="sortButton" onclick="togglePlayerStatsSorting()">Toggle Sorting</button>
+            </div>
+
+        </div>
+
+        <div class="chartContainer">
+            <h2>Tossup Points Timeline</h2>
+            <canvas id="gameTimelineChart" width="400" height="400"></canvas>
+        </div>
+        
+    </div>
+
+    <div id="questionsDiv" class="tableContainer" style="display: none;">
+        <h2>Question Browser</h2>
+    
+        <table id="questionsTable" border="1" class="styled-table">
+            <thead>
+                <tr>
+                    <!-- <th>Game</th> -->
+                    <th>Category</th>
+                    <th>Player 1</th>
+                    <th>Player 2</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="saveDataDiv" class="container" style="display: none">
+        <h2>Save Data</h2>
+        <label for="saveDataName">Save Name:</label>
+        <input type="text" id="saveDataName">
+
+
+        <select id="levelDropdown" name="levels">
+            <option value="freshman">Freshman</option>
+            <option value="jv">JV</option>
+            <option value="varsity">Varsity</option>
+        </select>
+
+
+        <button id="saveDataButton" onclick="beginGameSave()">Save</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- <script src="scriptUsingController.js"></script> -->
+    <script type="module" src="matchSetupHandler.js"></script>
+    <script type="module" src="scriptV2.js"></script>
+    <script type="module" src="chartManager.js"></script>
+    <script type="module" src="gameStatUtil.js"></script>
+</body>
+</html>

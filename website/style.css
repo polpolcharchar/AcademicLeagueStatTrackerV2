@@ -1,0 +1,315 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #9ba4f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 90%;
+    width: fit-content;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    transition: box-shadow 1s ease;
+
+    border-radius: 3px;
+}
+
+.tableContainer{
+    max-width: 95%;
+
+    width: fit-content;
+
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    transition: box-shadow 1s ease;
+
+    border-radius: 3px;
+
+    overflow-x: auto;
+}
+
+.container:hover {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+.tableContainer:hover {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+#chartDiv{
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chartContainer{
+    width: 29.33%;
+    margin-left: 2%;
+    margin-right: 2%;
+
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+    box-sizing: border-box;
+
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    transition: box-shadow 1s ease;
+
+    border-radius: 3px;
+}
+
+.chartContainer:hover {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input {
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tabDiv{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+    background-color: #8993ed;
+}
+
+.tabButton{
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+
+    padding: 10px 20px;
+    margin: 0px;
+    background-color: #5cb85c;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+
+    box-shadow: none;
+    transition: background-color 0.5s ease;
+
+    border-radius: 0px;
+
+}
+
+.tabButton:hover {
+    background-color: #4cae4c;
+    box-shadow: none;
+}
+
+.tabButton:disabled:hover {
+    background-color: #a04545;
+}
+
+.playerChoiceBox {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px; /* Reduced to minimize gap */
+    /* vertical-align: middle; Align the checkbox with the input */
+}
+
+.horizontalButtonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 0.3vw;
+
+    background-color: #5cb85c;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 1s ease;
+    transition: background-color 0.5s ease;
+
+    border-radius: 2px;
+}
+
+button:hover {
+    background-color: #4cae4c;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+button:disabled {
+    background-color: #a04545;
+    cursor: not-allowed;
+}
+
+button.selectedButton{
+    background-color: #ff5151;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+#playerList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#questionDetails{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+
+    margin: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: #ff5151;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+#switchDiv{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: row;
+}
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    user-select: none;
+    display: inline-block;
+    vertical-align: top;
+}
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.selected {
+    background-color: #ffcc00 !important;
+    color: #000 !important;
+}
+
+
+@keyframes pulseColors {
+    0% { color: #000000; }
+    50% { color: #a2a2a2; }
+}
+
+#currentTime {
+    width: 80px;
+    height: fit-content;
+    outline: none;
+    border: none;
+    font-size: 32px;
+    font-weight: 450;
+    animation: pulseColors 2s infinite;
+}
+
+.teamDropdown {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.playerInputWrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.playerInputField {
+    margin-right: 10px;
+    min-width: 100px;
+    max-width: 500px;
+}
